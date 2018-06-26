@@ -1,0 +1,22 @@
+def var mon as date extent 54.
+def var i as int.
+repeat :
+	i = 2 .
+	set mon[1]  LABEL "Enter a date(mm/dd/yy)" with side-labels .
+	if weekday(date(1,1,year(mon[1]))) > 2 then 
+		mon[2] = date(1,1,year(mon[1])) - weekday(date(1,1,year(mon[1]))) + 9 .
+	else if weekday(date(1,1,year(mon[1]))) <= 2 then 
+		mon[2] = date(1,1,year(mon[1])) - weekday(date(1,1,year(mon[1]))) + 2 .
+	repeat:
+		if year(mon[i]) <> year(mon[1]) then do:
+			mon[i] = ? .
+			message "ºâ²Ê¤D°Õ«¢«¢«¢«¢".
+			disp mon[2 for 53] no-label with 3 col .
+			leave .
+		end.
+		else do:
+			i = i + 1 .
+			mon[i] = mon[i - 1] + 7 .	
+		end.
+	end.
+end.
